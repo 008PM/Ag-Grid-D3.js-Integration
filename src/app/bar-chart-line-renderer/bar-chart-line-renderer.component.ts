@@ -28,7 +28,7 @@ refresh(): boolean {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
   createChart() {
-    var random = this.randomIntFromInterval(10,100);
+    var random = this.randomIntFromInterval(10, 100);
     const w = 100;
     const h = 30;
     let padding = 1;
