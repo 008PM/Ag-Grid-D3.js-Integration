@@ -1,0 +1,35 @@
+<div>
+<button #FirstButton  (click)="agGrid.columnApi.setColumnsVisible(['company_name'], false);agGrid.columnApi.setColumnsVisible(['brand_name'], false)">ATTRIBUTES BY CATEGORY</button>
+<button (click)="agGrid.columnApi.setColumnsVisible(['company_name'], true);agGrid.columnApi.setColumnsVisible(['brand_name'], false)">ATTRIBUTES BY COMPANY</button>
+<button (click)="agGrid.columnApi.setColumnsVisible(['brand_name'], true)">ATTRIBUTES BY BRAND</button>
+<select #select (change)="setStartDate($event.target.value)">
+    <option *ngFor='let rows of rowData'>
+        {{rows.years}}
+    </option>
+</select>
+<select #select (change)="setEndDate($event.target.value)">
+    <option *ngFor='let rows of rowData'>
+        {{rows.years}}
+    </option>
+</select>
+  <label>
+    <button (click)="onBtnExportDataAsExcel()" style="margin: 5px; font-weight: bold;">Export to Excel</button>
+  </label>
+</div>
+<ag-grid-angular
+    [paginationAutoPageSize]="true"
+    [pagination]="true"
+    #agGrid
+    style="width: 1250px; height: 500px;"
+    class="ag-theme-balham"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    rowSelection="multiple"
+
+    id="myGrid"
+    [modules]="modules"
+    [excelStyles]="excelStyles"
+    (gridReady)="onGridReady($event)"
+    >
+</ag-grid-angular>
+
