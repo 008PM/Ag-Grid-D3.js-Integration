@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import {AllModules} from '@ag-grid-enterprise/all-modules';
 import { HorizontalBarChartAdvancedComponent } from './horizontal-bar-chart-advanced/horizontal-bar-chart-advanced.component';
 import { BarChartLineRendererComponent } from './bar-chart-line-renderer/bar-chart-line-renderer.component';
-import { GenChartDirective } from './bar-chart-line-renderer/gen-chart.directive';
 // tslint:disable-next-line: max-line-length
 
 @NgModule({
@@ -17,7 +16,6 @@ import { GenChartDirective } from './bar-chart-line-renderer/gen-chart.directive
     DashboardComponent,
     HorizontalBarChartAdvancedComponent,
     BarChartLineRendererComponent,
-    GenChartDirective,
   ],
   entryComponents: [BarChartLineRendererComponent],
   imports: [
