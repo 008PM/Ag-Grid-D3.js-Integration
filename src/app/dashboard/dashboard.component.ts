@@ -78,6 +78,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       console.log(data);
       this.rowData = data;
     });
+
   }
   ngAfterViewInit() {
     const firstButton: HTMLElement = this.FirstButton.nativeElement as HTMLElement;
