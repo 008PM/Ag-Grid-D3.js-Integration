@@ -9,48 +9,64 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 })
 export class BarChartLineRendererComponent implements OnInit, ICellRendererAngularComp {
   constructor() { }
-public params:any =this.createChart();
+public params: any = this.createChart();
 
 agInit(params: any): void {
   this.params = params;
-  console.log("params");
+  console.log('params');
   console.log(params);
 }
 refresh(): boolean {
   return false;
 }
-//-------------------Above 
+// -------------------Above
   ngOnInit() {
     this.createChart();
   }
 
-  randomIntFromInterval(min, max) { // min and max included 
+  randomIntFromInterval(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
   createChart() {
-    var random = this.randomIntFromInterval(10, 100);
+    const random = this.randomIntFromInterval(10, 100);
     const w = 100;
     const h = 30;
-    let padding = 1;
-     var dataset = [random];
-    let svg = d3.selectAll('#mychart').attr('width', w).attr('height', h);
+    const padding = 1;
+    const dataset = [random]; // each time new random  value is
+    const svg = d3.selectAll('#mychart').attr('width', w).attr('height', h);
     const nodes = svg.selectAll('.rect').data(dataset)
    .enter()
    .append('g')
    .classed('rect', true);
     nodes.append('rect')
-   .attr('x', () =>0)
-   .attr('y', (d, i) =>i*(h/dataset.length))
-   .attr('height', () =>20)
-   .attr('width', (d) =>d+'%')
-   .attr('fill', () =>'#169bd5');
+   .attr('x', () => 0)
+   .attr('y', (d, i) => i * (h / dataset.length))
+   .attr('height', () => 20)
+   .attr('width', (d) => d + '%')
+   .attr('fill', () => '#169bd5');
     nodes.append('rect')
-   .attr('x', (d) =>d+'%')
-   .attr('y', (d, i) =>i*(h/dataset.length))
-   .attr('height', () =>20)
-   .attr('width', (d) =>(100-d)+'%')
-   .attr('fill', () =>'#FFFFFF');
+   .attr('x', (d) => d + '%')
+   .attr('y', (d, i) => i * (h / dataset.length))
+   .attr('height', () => 20)
+   .attr('width', (d) => (100 - d) + '%')
+   .attr('fill', () => '#FFFFFF');
 
+    svg.selectAll('text')
+   .data(dataset)
+   .enter()
+   .append('text')
+   .text((d) =>d +'%')
+   .attr('x', (d) => (d + 12) + '%')
+   .attr('y', () => 15)
+   .attr('text-anchor', () => 'middle')
+   .attr('height', () => 20)
+   .attr('width', (d) => (100 - d) + '%');
+
+  //  .attr({
+  //    'text-anchor': 'middle',
+  //    x(d, ) {return d + '%'; },
+  //    y(d,i) {return (i * (h / dataset.length)); }
+  //   });
 
 //    var container = document.createElement("div");
 // var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
